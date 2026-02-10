@@ -3,6 +3,9 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ProjectsModule } from './projects/projects.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
+import { User } from './users/user.entity';
 import { Project } from './projects/project.entity';
 
 @Module({
@@ -15,10 +18,11 @@ import { Project } from './projects/project.entity';
       username: 'root',
       password: '',
       database: 'nestjs_mvc',
-      entities: [Project],
+      entities: [Project, User],
       synchronize: true,
-    })
-
+    }),
+    AuthModule,
+    UsersModule
   ],
   controllers: [AppController],
   providers: [AppService],
