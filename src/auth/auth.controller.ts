@@ -6,10 +6,27 @@ import type { Response } from 'express';
 export class AuthController {
   constructor(private authService: AuthService) {}
 
-  @Post('register')
-  register(@Body() body: any) {
-    return this.authService.register(body.email, body.password);
+  @Get('register')
+  @Render('auth/register')
+  showRegister() {
+    return {};
   }
+
+  @Post('register')
+  async register(
+    @Body() body: any,
+    @Res() res: Response,
+  ) {
+    try {
+      await this.authService.register(body.email, body.password);
+      return res.redirect('/auth/login');
+    } catch (e) {
+      return res.render('auth/register', {
+        error: 'Email already used',
+      });
+    }
+  }
+
 
   @Get('login')
   @Render('auth/login')
@@ -29,11 +46,17 @@ export class AuthController {
         httpOnly: true,
       });
 
-      return res.redirect('/dashboard');
+      return res.redirect('/');
     } catch (e) {
       return res.render('auth/login', {
         error: 'Email atau password salah',
       });
     }
+  }
+
+  @Get('logout')
+  logout(@Res() res: Response) {
+    res.clearCookie('access_token');
+    return res.redirect('/');
   }
 }
