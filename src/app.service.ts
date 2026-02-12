@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
+import type { Request } from 'express';
 
 @Injectable()
 export class AppService {
-  getHome() {
+  getHomeData(req: Request) {
     return {
-      title: 'test Halo',
-      message: 'Hello World',
+      user: req.user || null,
     };
   }
 }
