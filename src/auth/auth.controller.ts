@@ -1,5 +1,6 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Get, Post, Body, Res, Render } from '@nestjs/common';
 import { AuthService } from './auth.service';
+import type { Response } from 'express';
 
 @Controller('auth')
 export class AuthController {
@@ -10,8 +11,29 @@ export class AuthController {
     return this.authService.register(body.email, body.password);
   }
 
+  @Get('login')
+  @Render('auth/login')
+  showLogin() {
+    return {};
+  }
+
   @Post('login')
-  login(@Body() body: any) {
-    return this.authService.login(body.email, body.password);
+  async login(
+    @Body() body: any,
+    @Res() res: Response,
+  ) {
+    try {
+      const result = await this.authService.login(body.email, body.password);
+
+      res.cookie('access_token', result.access_token, {
+        httpOnly: true,
+      });
+
+      return res.redirect('/dashboard');
+    } catch (e) {
+      return res.render('auth/login', {
+        error: 'Email atau password salah',
+      });
+    }
   }
 }
