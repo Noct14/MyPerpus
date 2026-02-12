@@ -4,13 +4,8 @@
     <title>{{title}}</title>
   </head>
   <body>
-    {{#if user}}
-      <p>Welcome, {{user.email}}</p>
-      <a href="/auth/logout">Logout</a>
-    {{else}}
-      <a href="/auth/login">Login</a>
-      <a href="/auth/register">Register</a>
-    {{/if}}
+    <p>Welcome, {{user.email}}</p>
+    <a href="/auth/logout">Logout</a>
     
     <h1>{{message}}</h1>
   </body>

@@ -1,17 +1,20 @@
 import { Controller, Get, Post, Body, Res, Render } from '@nestjs/common';
 import { AuthService } from './auth.service';
+import { Public } from './public.decorator';
 import type { Response } from 'express';
 
-@Controller('auth')
+@Controller()
 export class AuthController {
   constructor(private authService: AuthService) {}
 
+  @Public()
   @Get('register')
   @Render('auth/register')
   showRegister() {
     return {};
   }
 
+  @Public()
   @Post('register')
   async register(
     @Body() body: any,
@@ -19,7 +22,7 @@ export class AuthController {
   ) {
     try {
       await this.authService.register(body.email, body.password);
-      return res.redirect('/auth/login');
+      return res.redirect('/login');
     } catch (e) {
       return res.render('auth/register', {
         error: 'Email already used',
@@ -27,13 +30,14 @@ export class AuthController {
     }
   }
 
-
+  @Public()
   @Get('login')
   @Render('auth/login')
   showLogin() {
     return {};
   }
 
+  @Public()
   @Post('login')
   async login(
     @Body() body: any,
@@ -54,6 +58,7 @@ export class AuthController {
     }
   }
 
+  @Public()
   @Get('logout')
   logout(@Res() res: Response) {
     res.clearCookie('access_token');

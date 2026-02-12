@@ -1,5 +1,4 @@
-import { Controller, Get, Req, UseGuards, Render } from '@nestjs/common';
-import { OptionalAuthGuard } from './auth/optional-auth.guard';
+import { Controller, Get, Req, Render } from '@nestjs/common';
 import { AppService } from './app.service';
 import type { Request } from 'express';
 
@@ -7,7 +6,6 @@ import type { Request } from 'express';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @UseGuards(OptionalAuthGuard)
   @Get()
   @Render('home')
   home(@Req() req: Request) {
