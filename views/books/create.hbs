@@ -1,0 +1,28 @@
+<h1>Create Book</h1>
+
+<form method="POST" action="/books/create">
+  <div>
+    <label>Title</label>
+    <input type="text" name="title" required>
+  </div>
+
+  <div>
+    <label>Published Year</label>
+    <input type="number" name="published_year" required>
+  </div>
+
+  <div>
+    <label>Author</label>
+    <select name="author_id" required>
+      <option value="">-- Select Author --</option>
+      {{#each authors}}
+        <option value="{{this.id}}">
+          {{this.name}}
+        </option>
+      {{/each}}
+    </select>
+  </div>
+
+  <button type="submit">Save</button>
+  <a href="/books">Back</a>
+</form>

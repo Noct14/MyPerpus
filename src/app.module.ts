@@ -16,12 +16,14 @@ import { JwtAuthGuard } from './auth/jwt-auth.guard';
 import { UsersModule } from './users/users.module';
 import { User } from './users/user.entity';
 
-import { Project } from './projects/project.entity';
-import { ProjectsModule } from './projects/projects.module';
+import { Book } from './books/books.entity';
+import { BooksModule } from './books/books.module';
+
+import { Author } from './authors/authors.entity';
+import { AuthorsModule } from './authors/authors.module';
 
 @Module({
   imports: [
-    ProjectsModule,
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
@@ -29,11 +31,13 @@ import { ProjectsModule } from './projects/projects.module';
       username: 'root',
       password: '',
       database: 'nestjs_mvc',
-      entities: [Project, User],
+      entities: [User, Author, Book],
       synchronize: true,
     }),
     AuthModule,
-    UsersModule
+    UsersModule,
+    BooksModule,
+    AuthorsModule
   ],
   controllers: [AppController],
   providers: [

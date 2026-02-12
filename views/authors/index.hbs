@@ -1,0 +1,30 @@
+<h1>Authors</h1>
+
+<form method="GET" action="/authors">
+  <input type="text" name="search" placeholder="Search author..." value="{{search}}">
+  <button type="submit">Search</button>
+  <a href="/authors/create">+ Create Author</a>
+</form>
+
+<hr>
+
+<table border="1" cellpadding="8">
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Bio</th>
+    <th>Action</th>
+  </tr>
+
+  {{#each authors}}
+  <tr>
+    <td>{{this.id}}</td>
+    <td>{{this.name}}</td>
+    <td>{{this.bio}}</td>
+    <td>
+      <a href="/authors/{{this.id}}/edit">Edit</a>
+      <a href="/authors/{{this.id}}/delete">Delete</a>
+    </td>
+  </tr>
+  {{/each}}
+</table>

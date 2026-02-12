@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, Like } from 'typeorm';
-import { Project } from './project.entity';
+import { Author } from './authors.entity';
 
 @Injectable()
-export class ProjectsService {
+export class AuthorsService {
   constructor(
-    @InjectRepository(Project)
-    private repo: Repository<Project>,
+    @InjectRepository(Author)
+    private repo: Repository<Author>,
   ) {}
 
   async findAll(search?: string) {
@@ -26,13 +26,13 @@ export class ProjectsService {
     return this.repo.findOneBy({ id });
   }
 
-  create(name: string) {
-    const project = this.repo.create({ name });
-    return this.repo.save(project);
+  create(name: string, bio: string) {
+    const author = this.repo.create({ name, bio });
+    return this.repo.save(author);
   }
 
-  update(id: number, name: string) {
-    return this.repo.update(id, { name });
+  update(id: number, name: string, bio: string) {
+    return this.repo.update(id, { name, bio });
   }
 
   delete(id: number) {
