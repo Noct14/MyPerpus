@@ -1,32 +1,71 @@
-import { Controller, Get, Post, Put, Delete, Param, Body } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Param,
+  Query,
+  Body,
+  Render,
+  Res,
+} from '@nestjs/common';
 import { ProjectsService } from './projects.service';
+import type { Response } from 'express';
 
 @Controller('projects')
 export class ProjectsController {
   constructor(private service: ProjectsService) {}
 
+  // ================= LIST =================
   @Get()
-  findAll() {
-    return this.service.findAll();
+  @Render('projects/index')
+  async findAll(@Query('search') search?: string) {
+    const projects = await this.service.findAll(search);
+    return { projects, search };
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.service.findOne(+id);
+  // ================= CREATE PAGE =================
+  @Get('create')
+  @Render('projects/create')
+  showCreate() {
+    return {};
   }
 
-  @Post()
-  create(@Body('name') name: string) {
-    return this.service.create(name);
+  // ================= CREATE PROCESS =================
+  @Post('create')
+  async create(
+    @Body('name') name: string,
+    @Res() res: Response,
+  ) {
+    await this.service.create(name);
+    return res.redirect('/projects');
   }
 
-  @Put(':id')
-  update(@Param('id') id: string, @Body('name') name: string) {
-    return this.service.update(+id, name);
+  // ================= EDIT PAGE =================
+  @Get(':id/edit')
+  @Render('projects/edit')
+  async showEdit(@Param('id') id: string) {
+    const project = await this.service.findOne(+id);
+    return { project };
   }
 
-  @Delete(':id')
-  delete(@Param('id') id: string) {
-    return this.service.delete(+id);
+  // ================= UPDATE =================
+  @Post(':id/edit')
+  async update(
+    @Param('id') id: string,
+    @Body('name') name: string,
+    @Res() res: Response,
+  ) {
+    await this.service.update(+id, name);
+    return res.redirect('/projects');
+  }
+
+  // ================= DELETE =================
+  @Get(':id/delete')
+  async delete(
+    @Param('id') id: string,
+    @Res() res: Response,
+  ) {
+    await this.service.delete(+id);
+    return res.redirect('/projects');
   }
 }

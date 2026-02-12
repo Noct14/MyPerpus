@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, Like } from 'typeorm';
 import { Project } from './project.entity';
 
 @Injectable()
@@ -10,7 +10,15 @@ export class ProjectsService {
     private repo: Repository<Project>,
   ) {}
 
-  findAll() {
+  async findAll(search?: string) {
+    if (search) {
+      return this.repo.find({
+        where: {
+          name: Like(`%${search}%`),
+        },
+      });
+    }
+
     return this.repo.find();
   }
 
