@@ -1,14 +1,25 @@
-import { Controller, Get, Req, Render } from '@nestjs/common';
+import { Controller, Get, Query, Render } from '@nestjs/common';
 import { AppService } from './app.service';
-import type { Request } from 'express';
+import { BooksService } from './books/books.service';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(
+    private readonly appService: AppService,
+    private readonly booksService: BooksService,
+  ) {}
 
   @Get()
   @Render('home')
-  home(@Req() req: Request) {
-    return this.appService.getHomeData(req);
+  async home(@Query('search') search?: string) {
+    const books = await this.booksService.findAll(search);
+
+    return {
+      layout: 'layout',
+      title: 'Dashboard',
+      active: 'dashboard',
+      books,
+      search,
+    };
   }
 }

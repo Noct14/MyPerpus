@@ -11,7 +11,10 @@ export class AuthController {
   @Get('register')
   @Render('auth/register')
   showRegister() {
-    return {};
+    return {
+      layout: 'auth-layout',
+      title: 'Register',
+    };
   }
 
   @Public()
@@ -25,6 +28,8 @@ export class AuthController {
       return res.redirect('/login');
     } catch (e) {
       return res.render('auth/register', {
+        layout: 'auth-layout',
+        title: 'Register',
         error: 'Email already used',
       });
     }
@@ -34,7 +39,10 @@ export class AuthController {
   @Get('login')
   @Render('auth/login')
   showLogin() {
-    return {};
+    return {
+      layout: 'auth-layout',
+      title: 'Login',
+    };
   }
 
   @Public()
@@ -53,6 +61,8 @@ export class AuthController {
       return res.redirect('/');
     } catch (e) {
       return res.render('auth/login', {
+        layout: 'auth-layout',
+        title: 'Login',
         error: 'Email atau password salah',
       });
     }
@@ -62,6 +72,6 @@ export class AuthController {
   @Get('logout')
   logout(@Res() res: Response) {
     res.clearCookie('access_token');
-    return res.redirect('/');
+    return res.redirect('/login');
   }
 }

@@ -1,0 +1,19 @@
+<div class="sidebar">
+  <div class="logo">
+    <h2>MyPerpus</h2>
+  </div>
+
+  <ul class="menu">
+    <li class="{{#if (eq active 'dashboard')}}active{{/if}}">
+      <a href="/">Dashboard</a>
+    </li>
+
+    <li class="{{#if (eq active 'authors')}}active{{/if}}">
+      <a href="/authors">Authors</a>
+    </li>
+
+    <li>
+      <a href="/logout">Logout</a>
+    </li>
+  </ul>
+</div>

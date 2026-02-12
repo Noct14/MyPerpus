@@ -24,6 +24,7 @@ import { AuthorsModule } from './authors/authors.module';
 
 @Module({
   imports: [
+    BooksModule,
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
