@@ -28,6 +28,20 @@ The project demonstrates:
 
 ---
 
+## ScreenShots
+
+![Login Page](docs/screenshot/loginPage.jpg)
+![Register Page](docs/screenshot/registerPage.jpg)
+![Dasboard Page (Books)](docs/screenshot/dashboardBook.png)
+![Author Page](docs/screenshot/authorListPage.png)
+![Create Book Page](docs/screenshot/createBook.png)
+![Detail Book Page](docs/screenshot/detailBook.png)
+![Edit Book Page](docs/screenshot/editBook.png)
+![Create Author Page](docs/screenshot/createAuthor.png)
+![Detail Author Page](docs/screenshot/detailAuthor.png)
+![Edit Author Page](docs/screenshot/editAuthor.png)
+---
+
 ## Database Design
 
 Relational database using **MySQL** with three main tables:
