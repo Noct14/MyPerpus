@@ -3,17 +3,17 @@
     <h2>MyPerpus</h2>
   </div>
 
-  <ul class="menu">
-    <li class="{{#if (eq active 'dashboard')}}active{{/if}}">
+  <div class="menu">
+    <div class="menu-item {{#if (eq active 'dashboard')}}active{{/if}}">
       <a href="/">Dashboard</a>
-    </li>
+    </div>
 
-    <li class="{{#if (eq active 'authors')}}active{{/if}}">
+    <div class="menu-item {{#if (eq active 'authors')}}active{{/if}}">
       <a href="/authors">Authors</a>
-    </li>
+    </div>
 
-    <li>
+    <div class="menu-item logout">
       <a href="/logout">Logout</a>
-    </li>
-  </ul>
+    </div>
+  </div>
 </div>

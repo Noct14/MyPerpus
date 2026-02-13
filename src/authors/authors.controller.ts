@@ -20,7 +20,7 @@ export class AuthorsController {
   @Render('authors/index')
   async findAll(@Query('search') search?: string) {
     const authors = await this.service.findAll(search);
-    return { authors, search };
+    return { authors, search, active: 'authors',};
   }
 
   // CREATE PAGE
@@ -35,11 +35,11 @@ export class AuthorsController {
   async create(
     @Body('name') name: string,
     @Body('bio') bio: string,
-    @Res() res: Response,
   ) {
     await this.service.create(name, bio);
-    return res.redirect('/authors');
+    return { redirect: '/authors' };
   }
+
 
   // EDIT PAGE
   @Get(':id/edit')
