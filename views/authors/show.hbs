@@ -1,21 +1,45 @@
-<div class="main-content">
+<div class="page-header">
   <h1>Author Detail</h1>
+  <a href="/authors" class="btn btn-secondary">← Back</a>
+</div>
 
-  <div class="card">
+<div class="card detail-card">
+
+  <div class="detail-header">
     <h2>{{author.name}}</h2>
-
-    <p><strong>Bio:</strong></p>
-    <p>{{author.bio}}</p>
-
-    <p><strong>Created:</strong> {{author.created_at}}</p>
-    <p><strong>Updated:</strong> {{author.updated_at}}</p>
+    <div class="detail-actions">
+      <a href="/authors/{{author.id}}/edit" class="btn btn-primary">Edit</a>
+      <a href="/authors/{{author.id}}/delete" class="btn btn-danger">Delete</a>
+    </div>
   </div>
 
-  <div class="card">
-    <h3>Books by this Author</h3>
+  <div class="detail-item">
+    <span>Biography</span>
+    <p class="bio-text">{{author.bio}}</p>
+  </div>
 
-    {{#if author.books.length}}
-      <table>
+  <div class="detail-grid">
+    <div class="detail-item">
+      <span>Created At</span>
+      <strong>{{author.created_at}}</strong>
+    </div>
+
+    <div class="detail-item">
+      <span>Updated At</span>
+      <strong>{{author.updated_at}}</strong>
+    </div>
+  </div>
+
+</div>
+
+<div class="card">
+
+  <h3 class="section-title">Books by this Author</h3>
+
+  {{#if author.books.length}}
+
+    <div class="table-wrapper">
+      <table class="modern-table">
         <thead>
           <tr>
             <th>Title</th>
@@ -24,19 +48,23 @@
         </thead>
         <tbody>
           {{#each author.books}}
-            <tr>
-              <td>
-                <a href="/books/{{this.id}}">
-                  {{this.title}}
-                </a>
-              </td>
-              <td>{{this.published_year}}</td>
-            </tr>
+          <tr>
+            <td>
+              <a href="/books/{{this.id}}" class="link">
+                {{this.title}}
+              </a>
+            </td>
+            <td>
+              <span class="badge">{{this.published_year}}</span>
+            </td>
+          </tr>
           {{/each}}
         </tbody>
       </table>
-    {{else}}
-      <p>No books found.</p>
-    {{/if}}
-  </div>
+    </div>
+
+  {{else}}
+    <p class="empty-state">This author has no books yet.</p>
+  {{/if}}
+
 </div>

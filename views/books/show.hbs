@@ -1,19 +1,40 @@
-<div class="main-content">
+<div class="page-header">
   <h1>Book Detail</h1>
+  <a href="/books" class="btn btn-secondary">← Back</a>
+</div>
 
-  <div class="card">
+<div class="card detail-card">
+  <div class="detail-header">
     <h2>{{book.title}}</h2>
+    <div class="detail-actions">
+      <a href="/books/{{book.id}}/edit" class="btn btn-primary">Edit</a>
+      <a href="/books/{{book.id}}/delete" class="btn btn-danger">Delete</a>
+    </div>
+  </div>
 
-    <p><strong>Published Year:</strong> {{book.published_year}}</p>
+  <div class="detail-grid">
+    <div class="detail-item">
+      <span>Published Year</span>
+      <strong>{{book.published_year}}</strong>
+    </div>
 
-    <p>
-      <strong>Author:</strong>
-      <a href="/authors/{{book.author.id}}">
-        {{book.author.name}}
-      </a>
-    </p>
+    <div class="detail-item">
+      <span>Author</span>
+      <strong>
+        <a href="/authors/{{book.author.id}}" class="link">
+          {{book.author.name}}
+        </a>
+      </strong>
+    </div>
 
-    <p><strong>Created:</strong> {{book.created_at}}</p>
-    <p><strong>Updated:</strong> {{book.updated_at}}</p>
+    <div class="detail-item">
+      <span>Created At</span>
+      <strong>{{book.created_at}}</strong>
+    </div>
+
+    <div class="detail-item">
+      <span>Updated At</span>
+      <strong>{{book.updated_at}}</strong>
+    </div>
   </div>
 </div>

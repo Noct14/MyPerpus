@@ -1,30 +1,58 @@
-<h1>Authors</h1>
+<div class="page-header">
+  <h1>Authors</h1>
+  <a href="/authors/create" class="btn btn-primary">+ Create Author</a>
+</div>
 
-<form method="GET" action="/authors">
-  <input type="text" name="search" placeholder="Search author..." value="{{search}}">
-  <button type="submit">Search</button>
-  <a href="/authors/create">+ Create Author</a>
-</form>
+<div class="card">
 
-<hr>
+  <form method="GET" action="/authors" class="search-bar">
+    <input 
+      type="text" 
+      name="search" 
+      placeholder="Search author..." 
+      value="{{search}}"
+    >
+    <button type="submit" class="btn btn-secondary">Search</button>
+  </form>
 
-<table border="1" cellpadding="8">
-  <tr>
-    <th>ID</th>
-    <th>Name</th>
-    <th>Bio</th>
-    <th>Action</th>
-  </tr>
+  <div class="table-wrapper">
+    <table class="modern-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Bio</th>
+          <th class="text-right">Action</th>
+        </tr>
+      </thead>
 
-  {{#each authors}}
-  <tr>
-    <td>{{this.id}}</td>
-    <td>{{this.name}}</td>
-    <td>{{this.bio}}</td>
-    <td>
-      <a href="/authors/{{this.id}}/edit">Edit</a>
-      <a href="/authors/{{this.id}}/delete">Delete</a>
-    </td>
-  </tr>
-  {{/each}}
-</table>
+      <tbody>
+        {{#if authors.length}}
+          {{#each authors}}
+          <tr>
+            <td>#{{this.id}}</td>
+            <td class="book-title">
+              <a href="/authors/{{this.id}}" class="link">
+                {{this.name}}
+              </a>
+            </td>
+            <td class="truncate">{{this.bio}}</td>
+            <td class="text-right action-buttons">
+              <a href="/authors/{{this.id}}" class="btn btn-sm btn-secondary">View</a>
+              <a href="/authors/{{this.id}}/edit" class="btn btn-sm btn-primary">Edit</a>
+              <a href="/authors/{{this.id}}/delete" class="btn btn-sm btn-danger">Delete</a>
+            </td>
+          </tr>
+          {{/each}}
+        {{else}}
+          <tr>
+            <td colspan="4" class="empty-state">
+              No authors found.
+            </td>
+          </tr>
+        {{/if}}
+      </tbody>
+    </table>
+  </div>
+
+</div>

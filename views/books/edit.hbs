@@ -1,28 +1,37 @@
-<h1>Edit Book</h1>
+<div class="page-header">
+  <h1>Edit Book</h1>
+  <a href="/books" class="btn btn-secondary">← Back</a>
+</div>
 
-<form method="POST" action="/books/{{book.id}}/edit">
-  <div>
-    <label>Title</label>
-    <input type="text" name="title" value="{{book.title}}" required>
-  </div>
+<div class="card form-card">
+  <form method="POST" action="/books/{{book.id}}/edit">
 
-  <div>
-    <label>Published Year</label>
-    <input type="number" name="published_year" value="{{book.published_year}}" required>
-  </div>
+    <div class="form-group">
+      <label>Title</label>
+      <input type="text" name="title" value="{{book.title}}" required>
+    </div>
 
-  <div>
-    <label>Author</label>
-    <select name="author_id" required>
-      {{#each authors}}
-        <option value="{{this.id}}"
-          {{#if (eq this.id ../book.author_id)}}selected{{/if}}>
-          {{this.name}}
-        </option>
-      {{/each}}
-    </select>
-  </div>
+    <div class="form-group">
+      <label>Published Year</label>
+      <input type="number" name="published_year" value="{{book.published_year}}" required>
+    </div>
 
-  <button type="submit">Update</button>
-  <a href="/books">Back</a>
-</form>
+    <div class="form-group">
+      <label>Author</label>
+      <select name="author_id" required>
+        {{#each authors}}
+          <option value="{{this.id}}"
+            {{#if (eq this.id ../book.author_id)}}selected{{/if}}>
+            {{this.name}}
+          </option>
+        {{/each}}
+      </select>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary">Update Book</button>
+      <a href="/books" class="btn btn-secondary">Cancel</a>
+    </div>
+
+  </form>
+</div>
