@@ -79,6 +79,7 @@ Main dependencies used in this project:
 - **Core**
   - @nestjs/common, @nestjs/core, @nestjs/platform-express
   - reflect-metadata, rxjs
+  - @nestjs/config
 
 - **Database**
   - typeorm @nestjs/typeorm
