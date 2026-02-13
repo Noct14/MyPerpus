@@ -83,7 +83,7 @@ Main dependencies used in this project:
 
 # Getting Started
 
-## 📦 Prerequisites
+## Prerequisites
 
 Make sure you have installed:
 
