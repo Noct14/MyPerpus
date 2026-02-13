@@ -113,7 +113,7 @@ Make sure you have installed:
 ```bash
 # 1. Clone repository
 git clone https://github.com/Noct14/MyPerpus.git
-cd nestjs-mvc
+cd MyPerpus
 
 # 2. Install dependencies
 npm install
@@ -127,10 +127,10 @@ cp .env.example .env
 #   DB_PORT=3306
 #   DB_USERNAME=root
 #   DB_PASSWORD=
-#   DB_NAME=nestjs_mvc
+#   DB_NAME=myperpus
 
 # 4. Create database in MySQL
-# - Create database named `nestjs_mvc`
+# - Create database named `myperpus`
 
 # 5. Run application (development)
 npm run start:dev
