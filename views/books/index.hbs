@@ -59,4 +59,29 @@
     </table>
   </div>
 
+  {{#if showPagination}}
+    <div class="pagination">
+      {{#if hasPrev}}
+        <a 
+          href="/books?page={{prevPage}}{{#if search}}&search={{search}}{{/if}}" 
+          class="btn btn-sm btn-secondary"
+        >
+          ‹ Prev
+        </a>
+      {{/if}}
+
+      <span class="pagination-info">
+        Page {{page}} of {{totalPages}} ({{total}} books)
+      </span>
+
+      {{#if hasNext}}
+        <a 
+          href="/books?page={{nextPage}}{{#if search}}&search={{search}}{{/if}}" 
+          class="btn btn-sm btn-secondary"
+        >
+          Next ›
+        </a>
+      {{/if}}
+    </div>
+  {{/if}}
 </div>

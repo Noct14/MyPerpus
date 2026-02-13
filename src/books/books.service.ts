@@ -10,19 +10,30 @@ export class BooksService {
     private repo: Repository<Book>,
   ) {}
 
-  async findAll(search?: string) {
-    if (search) {
-      return this.repo.find({
-        where: {
+  async findAll(search?: string, page = 1, limit = 10) {
+    const where = search
+      ? {
           title: Like(`%${search}%`),
-        },
-        relations: ['author'],
-      });
-    }
+        }
+      : {};
 
-    return this.repo.find({
+    const [items, total] = await this.repo.findAndCount({
+      where,
       relations: ['author'],
+      order: { id: 'DESC' },
+      skip: (page - 1) * limit,
+      take: limit,
     });
+
+    const totalPages = Math.max(Math.ceil(total / limit), 1);
+
+    return {
+      data: items,
+      total,
+      page,
+      limit,
+      totalPages,
+    };
   }
 
   findOne(id: number) {

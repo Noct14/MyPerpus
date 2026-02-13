@@ -148,7 +148,7 @@ Application will run on: `http://localhost:3000`
 - `/login`, `/register`
 - `/` (dashboard)
 - `/authors`, `/authors/create`, `/authors/:id`, `/authors/:id/edit`
-- `/books`, `/books/create`, `/books/:id`, `/books/:id/edit`
+- `/books/create`, `/books/:id`, `/books/:id/edit`
 
 ### API endpoints (for Postman)
 

@@ -7,12 +7,12 @@
 <div class="stats-grid">
   <div class="stat-card">
     <span>Total Books</span>
-    <h2>{{books.length}}</h2>
+    <h2>{{total}}</h2>
   </div>
 
   <div class="stat-card">
     <span>Search Result</span>
-    <h2>{{books.length}}</h2>
+    <h2>{{total}}</h2>
   </div>
 </div>
 
@@ -72,4 +72,29 @@
     </table>
   </div>
 
+  {{#if showPagination}}
+    <div class="pagination">
+      {{#if hasPrev}}
+        <a 
+          href="/?page={{prevPage}}{{#if search}}&search={{search}}{{/if}}" 
+          class="btn btn-sm btn-secondary"
+        >
+          ‹ Prev
+        </a>
+      {{/if}}
+
+      <span class="pagination-info">
+        Page {{page}} of {{totalPages}} ({{total}} books)
+      </span>
+
+      {{#if hasNext}}
+        <a 
+          href="/?page={{nextPage}}{{#if search}}&search={{search}}{{/if}}" 
+          class="btn btn-sm btn-secondary"
+        >
+          Next ›
+        </a>
+      {{/if}}
+    </div>
+  {{/if}}
 </div>

@@ -23,9 +23,34 @@ export class BooksController {
   // LIST
   @Get()
   @Render('books/index')
-  async findAll(@Query('search') search?: string) {
-    const books = await this.service.findAll(search);
-    return { books, search };
+  async findAll(
+    @Query('search') search?: string,
+    @Query('page') page?: string,
+  ) {
+    const currentPage = Math.max(parseInt(page ?? '1', 10) || 1, 1);
+    const limit = 10;
+
+    const { data, total, totalPages } = await this.service.findAll(
+      search,
+      currentPage,
+      limit,
+    );
+
+    const hasPrev = currentPage > 1;
+    const hasNext = currentPage < totalPages;
+
+    return {
+      books: data,
+      search,
+      page: currentPage,
+      total,
+      totalPages,
+      hasPrev,
+      hasNext,
+      prevPage: hasPrev ? currentPage - 1 : 1,
+      nextPage: hasNext ? currentPage + 1 : totalPages,
+      showPagination: totalPages > 1,
+    };
   }
 
   // CREATE PAGE
