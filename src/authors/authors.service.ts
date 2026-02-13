@@ -22,9 +22,13 @@ export class AuthorsService {
     return this.repo.find();
   }
 
-  findOne(id: number) {
-    return this.repo.findOneBy({ id });
+  async findOne(id: number) {
+    return this.repo.findOne({
+      where: { id },
+      relations: ['books'],
+    });
   }
+
 
   create(name: string, bio: string) {
     const author = this.repo.create({ name, bio });

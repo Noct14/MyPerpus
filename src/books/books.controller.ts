@@ -7,6 +7,7 @@ import {
   Body,
   Render,
   Res,
+  NotFoundException,
 } from '@nestjs/common';
 import { BooksService } from './books.service';
 import { AuthorsService } from '../authors/authors.service';
@@ -49,6 +50,19 @@ export class BooksController {
 
     return res.redirect('/books');
   }
+
+  @Get(':id')
+  @Render('books/show')
+  async show(@Param('id') id: string) {
+    const book = await this.service.findOne(+id);
+
+    if (!book) {
+      throw new NotFoundException('Book not found');
+    }
+
+    return { book };
+  }
+
 
   // EDIT PAGE
   @Get(':id/edit')

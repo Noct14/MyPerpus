@@ -10,17 +10,13 @@ async function bootstrap() {
 
   app.use(cookieParser());
 
-  // ✅ static folder (css, js, images)
   app.useStaticAssets(join(__dirname, '..', 'public'));
 
-  // ✅ set views folder
   app.setBaseViewsDir(join(__dirname, '..', 'views'));
   app.setViewEngine('hbs');
 
-  // ✅ register partials
   hbs.registerPartials(join(__dirname, '..', 'views/partials'));
 
-  // ✅ helper
   hbs.registerHelper('eq', function (a, b) {
     return a === b;
   });

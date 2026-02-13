@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Book } from './books.entity';
 import { BooksService } from './books.service';
 import { BooksController } from './books.controller';
+import { BooksApiController } from './books.api.controller';
 import { AuthorsModule } from '../authors/authors.module';
 
 @Module({
@@ -10,7 +11,7 @@ import { AuthorsModule } from '../authors/authors.module';
     TypeOrmModule.forFeature([Book]),
     AuthorsModule,
   ],
-  controllers: [BooksController],
+  controllers: [BooksController, BooksApiController],
   providers: [BooksService],
   exports: [BooksService],
 })

@@ -1,0 +1,19 @@
+<div class="main-content">
+  <h1>Book Detail</h1>
+
+  <div class="card">
+    <h2>{{book.title}}</h2>
+
+    <p><strong>Published Year:</strong> {{book.published_year}}</p>
+
+    <p>
+      <strong>Author:</strong>
+      <a href="/authors/{{book.author.id}}">
+        {{book.author.name}}
+      </a>
+    </p>
+
+    <p><strong>Created:</strong> {{book.created_at}}</p>
+    <p><strong>Updated:</strong> {{book.updated_at}}</p>
+  </div>
+</div>

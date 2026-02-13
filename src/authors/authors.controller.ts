@@ -7,6 +7,7 @@ import {
   Body,
   Render,
   Res,
+  NotFoundException,
 } from '@nestjs/common';
 import { AuthorsService } from './authors.service';
 import type { Response } from 'express';
@@ -35,11 +36,26 @@ export class AuthorsController {
   async create(
     @Body('name') name: string,
     @Body('bio') bio: string,
+    @Res() res: Response,
   ) {
     await this.service.create(name, bio);
-    return { redirect: '/authors' };
+    return res.redirect('/authors');
   }
 
+  @Get(':id')
+  @Render('authors/show')
+  async show(@Param('id') id: string) {
+    const author = await this.service.findOne(+id);
+
+    if (!author) {
+      throw new NotFoundException('Author not found');
+    }
+
+    return {
+      author,
+      active: 'authors',
+    };
+  }
 
   // EDIT PAGE
   @Get(':id/edit')

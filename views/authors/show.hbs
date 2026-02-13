@@ -1,0 +1,42 @@
+<div class="main-content">
+  <h1>Author Detail</h1>
+
+  <div class="card">
+    <h2>{{author.name}}</h2>
+
+    <p><strong>Bio:</strong></p>
+    <p>{{author.bio}}</p>
+
+    <p><strong>Created:</strong> {{author.created_at}}</p>
+    <p><strong>Updated:</strong> {{author.updated_at}}</p>
+  </div>
+
+  <div class="card">
+    <h3>Books by this Author</h3>
+
+    {{#if author.books.length}}
+      <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Year</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each author.books}}
+            <tr>
+              <td>
+                <a href="/books/{{this.id}}">
+                  {{this.title}}
+                </a>
+              </td>
+              <td>{{this.published_year}}</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    {{else}}
+      <p>No books found.</p>
+    {{/if}}
+  </div>
+</div>
