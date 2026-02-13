@@ -118,13 +118,24 @@ cd nestjs-mvc
 # 2. Install dependencies
 npm install
 
-# 3. Setup database
-# - Create database `nestjs_mvc` in MySQL
-# - Adjust DB config in `src/app.module.ts` if needed (host, port, username, password)
+# 3. Setup environment variables
+# - Copy .env.example to .env
+cp .env.example .env
 
-# 4. Run application (development)
+# - Adjust database configuration inside .env
+#   DB_HOST=localhost
+#   DB_PORT=3306
+#   DB_USERNAME=root
+#   DB_PASSWORD=
+#   DB_NAME=nestjs_mvc
+
+# 4. Create database in MySQL
+# - Create database named `nestjs_mvc`
+
+# 5. Run application (development)
 npm run start:dev
 ```
+
 
 Application will run on: `http://localhost:3000`
 
