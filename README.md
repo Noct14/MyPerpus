@@ -112,7 +112,7 @@ Make sure you have installed:
 
 ```bash
 # 1. Clone repository
-git clone <REPO_URL>
+git clone https://github.com/Noct14/MyPerpus.git
 cd nestjs-mvc
 
 # 2. Install dependencies
