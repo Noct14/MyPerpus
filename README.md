@@ -58,7 +58,7 @@ Relational database using **MySQL** with three main tables:
 - One **Author** has many **Books**.
 - Each **Book** belongs to exactly one **Author**.
 
-![Database ERD](docs/db-diagram.png)
+![Database ERD](docs/ERD.png)
 
 ## Dependencies
 Main dependencies used in this project:
